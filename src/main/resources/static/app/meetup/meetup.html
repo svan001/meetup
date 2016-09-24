@@ -3,18 +3,16 @@
 	<h1>Rencontre {{meetup.title}}</h1>
 
 	<h3>Ajouter un participant</h3>
-	<form class="form">
-		<label>Nom</label> <input type="text" ng-model="memberForm.name" />
-		<button class="btn btn-primary" ng-click="addMember(memberForm)"
-			ng-disabled="!validateMemberForm(memberForm)">ADD !!</button>
-	</form>
 
+	<add-member meetup="meetup" on-success="refreshMeetup()">
+	</add-member>
+
+	<h3>Liste des participant</h3>
 	<table class="table">
 		<thead>
 			<th>Nom</th>
 		</thead>
 		<tbody>
-
 			<tr ng-repeat="member in meetup.members">
 
 				<td>{{member.name}}</td>

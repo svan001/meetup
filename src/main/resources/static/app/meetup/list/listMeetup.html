@@ -1,13 +1,19 @@
 <div class="container">
 
 	<h1>Rencontre BSMT</h1>
+
+	<h2>Ajouter une rencontre</h2>
+
+	<add-meetup on-success="refreshMeetupList()"></add-meetup>
+
+	<h2>Liste des rencontre prévues</h2>
+
 	<table class="table">
 		<thead>
 			<th>Nom</th>
 			<th>Date</th>
 		</thead>
 		<tbody>
-
 			<tr ng-repeat="meetup in meetups" ng-click="selectMeetup(meetup)">
 
 				<td>{{meetup.title}}</td>

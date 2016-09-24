@@ -1,0 +1,12 @@
+<form class="form">
+	<div class="form-group">
+		<label for="meetupTitleInput">Titre : </label> 
+		<input
+			id="meetupTitleInput" 
+			type="text"
+			class="form-control"
+			ng-model="$ctrl.meetupForm.title" 
+			placeholder="Nom de la rencontre" />
+	</div>
+	<button class="btn btn-primary" ng-click="$ctrl.addMeetup()">GO !</button>
+</form>
