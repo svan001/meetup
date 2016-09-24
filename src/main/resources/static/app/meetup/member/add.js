@@ -15,10 +15,15 @@
 		}
 
 		// Add the member to the meeting
-		ctrl.addMember = function() {
+		ctrl.addMember = function(status) {
+			var data = {
+				name : ctrl.memberForm.name,
+				status : status
+			};
+
 			Meetup.addMember({
 				id : ctrl.meetup.id
-			}, ctrl.memberForm,
+			}, data,
 			// Maj du scope
 			function() {
 				resetForm();

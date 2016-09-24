@@ -9,6 +9,7 @@ import com.svan.veille.bsmt.meetup.converter.MeetupConverter;
 import com.svan.veille.bsmt.meetup.converter.MeetupMemberConverter;
 import com.svan.veille.bsmt.meetup.domain.Meetup;
 import com.svan.veille.bsmt.meetup.domain.MeetupMember;
+import com.svan.veille.bsmt.meetup.domain.enums.MeetupMemberStatus;
 import com.svan.veille.bsmt.meetup.dto.MeetupDto;
 import com.svan.veille.bsmt.meetup.dto.MeetupMemberDto;
 import com.svan.veille.bsmt.meetup.repository.MeetupRepository;
@@ -70,6 +71,11 @@ public class MeetupService {
 		String name = member.getName();
 		if (name == null || name.isEmpty()) {
 			throw new IllegalArgumentException("Nom vide : " + name);
+		}
+
+		String status = member.getStatus();
+		if (status == null || MeetupMemberStatus.findByCode(status) == null) {
+			throw new IllegalArgumentException("Status non reconnus : " + status);
 		}
 	}
 

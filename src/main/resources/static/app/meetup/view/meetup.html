@@ -2,20 +2,26 @@
 
 	<h1>Rencontre {{meetup.title}}</h1>
 
-	<h3>Ajouter un participant</h3>
-
 	<add-member meetup="meetup" on-success="refreshMeetup()">
 	</add-member>
 
-	<h3>Liste des participant</h3>
+	<h3>Participants : {{meetupStats.going}} présent(s),
+		{{meetupStats.notGoing}} absent(s) et {{meetupStats.maybe}} indéci(s)</h3>
 	<table class="table">
 		<thead>
 			<th>Nom</th>
+			<th>Présence</th>
 		</thead>
 		<tbody>
-			<tr ng-repeat="member in meetup.members">
-
+			<tr ng-repeat="member in meetup.members | orderBy:['status', 'name']">
 				<td>{{member.name}}</td>
+				<td><span class="glyphicon"
+					ng-class="{
+					'glyphicon-ok' : member.status == 'GOING',
+					'glyphicon-remove' : member.status == 'NOT_GOING',
+					'glyphicon-question-sign' : member.status == 'MAYBE',
+					}"
+					aria-hidden="true"></span></td>
 			</tr>
 		</tbody>
 	</table>
