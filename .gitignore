@@ -4,3 +4,5 @@
 /.springBeans
 /.settings/
 /.mvn/
+/.idea/
+*.iml
