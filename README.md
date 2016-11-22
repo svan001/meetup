@@ -2,6 +2,11 @@
 
 ## Tuto/proc d'install
 
+### Reload spring boot / IntelliJ
+
+* Devtools
+* Soit "Make" à la main, soit forcer la compilation auto (explication ici : https://patrickgrimard.io/2016/01/18/spring-boot-devtools-first-look/)
+ 
 ## Base de donées
 
 ### Install mongo
