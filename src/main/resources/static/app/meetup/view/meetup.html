@@ -14,9 +14,9 @@
         <tbody>
         <tr ng-repeat="member in meetup.members | orderBy:['status', 'name']"
             ng-class="{
-				'bg-success' : member.status == 'GOING',
-				'bg-danger' : member.status == 'NOT_GOING',
-				'bg-warning' : member.status == 'MAYBE',
+				'success' : member.status == 'GOING',
+				'danger' : member.status == 'NOT_GOING',
+				'warning' : member.status == 'MAYBE',
 			}"
         >
             <td><span class="glyphicon"
