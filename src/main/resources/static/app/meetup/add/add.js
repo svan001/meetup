@@ -1,36 +1,43 @@
-(function() {
+(function () {
 
-	"use strict";
+    "use strict";
 
-	var module = angular.module('meetup');
+    var module = angular.module('meetup');
 
-	var controller = function(Meetup) {
-		var ctrl = this;
+    var controller = function (Meetup) {
+        var ctrl = this;
 
-		function resetForm() {
-			ctrl.meetupForm = {};
-		}
+        function resetForm() {
+            ctrl.meetupForm = {};
+        }
 
-		ctrl.addMeetup = function() {
-			var meetup = new Meetup(ctrl.meetupForm);
+        ctrl.addMeetup = function () {
+            var meetup = new Meetup(ctrl.meetupForm);
 
-			meetup.$save().then(function() {
-				resetForm();
-				// $scope.meetups = Meetup.query();
-				ctrl.onSuccess();
-			}, function(error) {
-				$log.error("création de meetup en erreur " + error)
-			});
-		}
+            meetup.$save().then(function () {
+                resetForm();
+                // $scope.meetups = Meetup.query();
+                ctrl.onSuccess();
+            }, function (error) {
+                $log.error("création de meetup en erreur " + error)
+            });
+        }
 
-	};
+        ctrl.$onInit = function () {
+            ctrl.datePickerOptions = {
+                minDate: new Date(),
+                showWeeks: true
+            };
+        }
 
-	module.component('addMeetup', {
-		templateUrl : '/app/meetup/add/add.html',
-		controller : controller,
-		bindings : {
-			onSuccess : "&"
-		}
-	});
+    };
+
+    module.component('addMeetup', {
+        templateUrl: '/app/meetup/add/add.html',
+        controller: controller,
+        bindings: {
+            onSuccess: "&"
+        }
+    });
 
 })();

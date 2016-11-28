@@ -1,56 +1,57 @@
 package com.svan.veille.bsmt.meetup.dto;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 public class MeetupDto {
 
-	private String id;
+    private String id;
 
-	private String title;
+    private String title;
 
-	private LocalDateTime date;
+    private ZonedDateTime date;
 
-	private List<MeetupMemberDto> members;
+    private List<MeetupMemberDto> members;
 
-	public MeetupDto() {
-	}
+    public MeetupDto() {
+    }
 
-	public MeetupDto(String title, LocalDateTime date) {
-		this.title = title;
-		this.date = date;
-	}
+    public MeetupDto(String id, String title, ZonedDateTime date) {
+        this.id = id;
+        this.title = title;
+        this.date = date;
+    }
 
-	public String getId() {
-		return id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public LocalDateTime getDate() {
-		return date;
-	}
+    public ZonedDateTime getDate() {
+        return date;
+    }
 
-	public void setDate(LocalDateTime date) {
-		this.date = date;
-	}
+    public void setDate(ZonedDateTime date) {
+        this.date = date;
+    }
 
-	public List<MeetupMemberDto> getMembers() {
-		return members;
-	}
+    public List<MeetupMemberDto> getMembers() {
+        return members;
+    }
 
-	public void setMembers(List<MeetupMemberDto> members) {
-		this.members = members;
-	}
+    public void setMembers(List<MeetupMemberDto> members) {
+        this.members = members;
+    }
 
 }

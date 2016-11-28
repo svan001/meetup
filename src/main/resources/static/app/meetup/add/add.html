@@ -1,12 +1,36 @@
 <form class="form">
-	<div class="form-group">
-		<label for="meetupTitleInput">Titre : </label> 
-		<input
-			id="meetupTitleInput" 
-			type="text"
-			class="form-control"
-			ng-model="$ctrl.meetupForm.title" 
-			placeholder="Nom de la rencontre" />
-	</div>
-	<button class="btn btn-primary" ng-click="$ctrl.addMeetup()">GO !</button>
+    <div class="form-group">
+        <label for="meetupTitleInput">Titre : </label>
+        <input
+                id="meetupTitleInput"
+                type="text"
+                class="form-control"
+                ng-model="$ctrl.meetupForm.title"
+                placeholder="Nom de la rencontre"/>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <label for="meetupDateInput">Date : </label>
+                <div uib-datepicker id="meetupDateInput"
+                     class="well well-sm"
+                     ng-model="$ctrl.meetupForm.date"
+                     datepicker-options="$ctrl.datePickerOptions"
+                >
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <label for="meetupTimeInput">Heure : </label>
+                <div uib-timepicker id="meetupTimeInput"
+                     minute-step="15" show-meridian="false"
+                     ng-model="$ctrl.meetupForm.date"
+                     ng-disabled="!$ctrl.meetupForm.date"
+                >
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <button class="btn btn-primary" ng-click="$ctrl.addMeetup()">GO !</button>
 </form>

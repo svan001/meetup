@@ -1,6 +1,6 @@
 <div class="container">
 
-    <h1>Rencontre {{meetup.title}}</h1>
+    <h1>Rencontre {{meetup.title}} du {{meetup.date | date:'medium'}}</h1>
 
     <add-member meetup="meetup" on-success="refreshMeetup()">
     </add-member>

@@ -1,38 +1,35 @@
 <!DOCTYPE html>
 <html ng-app="meetupApp">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <base href="/meetup">
 
-<base href="/meetup">
+    <title>Test</title>
 
-<title>Test</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-	rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
 
-<link href="css/main.css" rel="stylesheet">
+    <!-- <<< AngularJS -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.min.js"></script>
 
-<!-- <<< AngularJS -->
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
-<script
-	src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-resource.min.js"></script>
-<script
-	src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
-<script
-	src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-sanitize.min.js"></script>
+    <script src="//code.angularjs.org/1.5.0/i18n/angular-locale_fr-fr.js"></script>
+    <!-- >>> AngularJS -->
 
-<script src="//code.angularjs.org/1.5.0/i18n/angular-locale_fr-fr.js"></script>
-<!-- >>> AngularJS -->
+    <script src="lib/ui-bootstrap-tpls.min.js"></script>
 
-<script src="app/app.js"></script>
+    <script src="app/app.js"></script>
 
-<script src="app/meetup/meetup.js"></script>
-<script src="app/meetup/view/meetupController.js"></script>
-<script src="app/meetup/view/list/listMeetupController.js"></script>
+    <script src="app/meetup/meetup.js"></script>
+    <script src="app/meetup/view/meetupController.js"></script>
+    <script src="app/meetup/view/list/listMeetupController.js"></script>
 
-<script src="app/meetup/member/add.js"></script>
-<script src="app/meetup/add/add.js"></script>
+    <script src="app/meetup/member/add.js"></script>
+    <script src="app/meetup/add/add.js"></script>
 
 </head>
 <body ng-view>
