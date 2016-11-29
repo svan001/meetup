@@ -33,7 +33,7 @@
     };
 
     module.component('addMeetup', {
-        templateUrl: '/app/meetup/add/add.html',
+        templateUrl: '/app/meetup/add/addMeetup.html',
         controller: controller,
         bindings: {
             onSuccess: "&"

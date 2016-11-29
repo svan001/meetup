@@ -12,11 +12,11 @@
     app.config(function ($routeProvider, $locationProvider) {
 
         $routeProvider.when('/meetup', {
-            templateUrl: "app/meetup/view/list/listMeetup.html",
-            controller: "listMeetupController"
+            templateUrl: "app/meetup/list/listMeetup.html",
+            controller: "listMeetupCtrl"
         }).when('/meetup/:id', {
-            templateUrl: "app/meetup/view/meetup.html",
-            controller: "meetupController"
+            templateUrl: "app/meetup/show/showMeetup.html",
+            controller: "showMeetupCtrl"
         }).otherwise({
             redirectTo: '/meetup'
         });

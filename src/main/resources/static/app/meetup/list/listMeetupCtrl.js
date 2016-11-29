@@ -3,7 +3,7 @@
 
 	var module = angular.module("meetup");
 
-	module.controller('listMeetupController', function($scope, $location, $log, Meetup) {
+	module.controller('listMeetupCtrl', function($scope, $location, $log, Meetup) {
 
 		var init = function() {
 			$scope.refreshMeetupList();
@@ -14,7 +14,6 @@
 		};
 
 		$scope.selectMeetup = function(meetup) {
-			console.log("Meetup selectd : " + meetup.id);
 			$location.path("/meetup/" + meetup.id);
 		}
 
