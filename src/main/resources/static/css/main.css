@@ -1,3 +1,29 @@
-h1 {
-	color : red;
+body {
+    color: #5e5e5e;
+    padding-top: 2px;
+    padding-bottom: 50px;
+    font-family: 'Open Sans', 'Droid Sans', arial, sans-serif;
 }
+
+h1 {
+    color: red;
+}
+
+/* Couleur des pseudos reprise du fofo*/
+.teamLeader {
+    color: #1109F0;
+}
+
+.teamMember {
+    color: #F50C0C;
+}
+
+.teamPostulant {
+    color: #21EBEB;
+}
+
+.teamFriend {
+    color: #25CC2A;
+}
+
+/* / Couleur des pseudos*/
