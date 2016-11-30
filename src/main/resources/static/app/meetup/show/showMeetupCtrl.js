@@ -7,6 +7,10 @@
         var meetupId = $routeParams.id;
 
         var init = function () {
+            $scope.datePickerOptions = {
+                showWeeks: true
+            };
+
             $scope.refreshMeetup();
         };
 
