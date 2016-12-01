@@ -4,6 +4,7 @@
 	var module = angular.module("meetup");
 
 	module.controller('listMeetupCtrl', function($scope, $location, $log, Meetup) {
+		$scope.isMeetupOpen = Meetup.isOpen;
 
 		var init = function() {
 			$scope.refreshMeetupList();
