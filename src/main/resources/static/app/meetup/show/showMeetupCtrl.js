@@ -20,6 +20,7 @@
                 id: meetupId
             }, function (meetup) {
                 $scope.meetupStats = Meetup.generateMeetupStats(meetup);
+                $scope.isMeetupOpen = Meetup.isOpen(meetup);
             })
         };
 

@@ -1,10 +1,45 @@
 <div class="container">
 
-    <h1>Rencontre {{meetup.title}} du {{meetup.date | date:'medium'}}</h1>
+    <h1>Rencontre {{meetup.title}}</h1>
 
-    <add-member meetup="meetup" on-success="refreshMeetup()">
-    </add-member>
+    <!-- Display infos -->
+    <div class="row">
+        <div class="form-group">
+            <div class="col-lg-6 col-md-6">
+                <label for="meetupDateInput">Date : </label>
+                <div uib-datepicker id="meetupDateInput"
+                     class="well well-sm"
+                     ng-model="meetup.date"
+                     datepicker-options="datePickerOptions"
+                     ng-disabled="true"
+                >
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <label for="meetupTimeInput">Heure : </label>
+                <div uib-timepicker id="meetupTimeInput"
+                     minute-step="15" show-meridian="false"
+                     ng-model="meetup.date"
+                     ng-disabled="true"
+                >
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- / Display infos -->
 
+    <!-- Participation -->
+    <div class="row">
+        <add-member ng-if="isMeetupOpen"
+                    meetup="meetup" on-success="refreshMeetup()">
+        </add-member>
+        <p ng-if="!isMeetupOpen" class="text-center">
+            Rencontre fermée
+        </p>
+    </div>
+    <!-- / Participation -->
+
+    <!-- Recap -->
     <h3>Participants : {{meetupStats.going}} présent(s),
         {{meetupStats.notGoing}} absent(s) et {{meetupStats.maybe}} indéci(s)</h3>
     <table class="table">
@@ -31,6 +66,6 @@
         </tr>
         </tbody>
     </table>
-
+    <!-- / Recap -->
 
 </div>
