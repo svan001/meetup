@@ -3,6 +3,9 @@ package com.svan.veille.bsmt.meetup.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.svan.veille.bsmt.meetup.converter.MeetupConverter;
@@ -16,67 +19,73 @@ import com.svan.veille.bsmt.meetup.repository.MeetupRepository;
 
 @Service
 public class MeetupService {
+    private static final Integer DEFAULT_QUERY_LIMIT = 10;
 
-	@Autowired
-	private MeetupRepository meetupRepository;
+    @Autowired
+    private MeetupRepository meetupRepository;
 
-	@Autowired
-	private MeetupMemberConverter memberConverter;
+    @Autowired
+    private MeetupMemberConverter memberConverter;
 
-	@Autowired
-	private MeetupConverter converter;
+    @Autowired
+    private MeetupConverter converter;
 
-	public List<MeetupDto> findAll() {
-		return converter.toDTO(meetupRepository.findAll());
-	}
+    public List<MeetupDto> findAll(Integer limit) {
+        Integer nbRes = (limit != null) && (limit > 0) ?
+                limit : DEFAULT_QUERY_LIMIT;
+        PageRequest pageRequest = new PageRequest(0, nbRes, new Sort(Sort.Direction.DESC, "date"));
 
-	public MeetupDto findBy(String id) {
-		return converter.toDTO(meetupRepository.findOne(id));
-	}
+        Page<Meetup> page = meetupRepository.findAll(pageRequest);
+        return converter.toDTO(page.getContent());
+    }
 
-	public MeetupDto create(MeetupDto meetupDto) {
-		// Init
-		validateNewMeetup(meetupDto);
+    public MeetupDto findBy(String id) {
+        return converter.toDTO(meetupRepository.findOne(id));
+    }
 
-		Meetup meetup = converter.toDomain(meetupDto);
+    public MeetupDto create(MeetupDto meetupDto) {
+        // Init
+        validateNewMeetup(meetupDto);
 
-		// Create
-		meetupRepository.save(meetup);
-		return converter.toDTO(meetup);
-	}
+        Meetup meetup = converter.toDomain(meetupDto);
 
-	private void validateNewMeetup(MeetupDto meetup) {
-		String title = meetup.getTitle();
+        // Create
+        meetupRepository.save(meetup);
+        return converter.toDTO(meetup);
+    }
 
-		if (title == null || title.isEmpty()) {
-			throw new IllegalArgumentException("Titre vide : " + title);
-		}
-	}
+    private void validateNewMeetup(MeetupDto meetup) {
+        String title = meetup.getTitle();
 
-	public MeetupMemberDto addMember(String idMeetup, MeetupMemberDto memberDto) {
-		// Init
-		validateNewMember(memberDto);
+        if (title == null || title.isEmpty()) {
+            throw new IllegalArgumentException("Titre vide : " + title);
+        }
+    }
 
-		MeetupMember member = memberConverter.toDomain(memberDto);
-		Meetup meetup = meetupRepository.findOne(idMeetup);
+    public MeetupMemberDto addMember(String idMeetup, MeetupMemberDto memberDto) {
+        // Init
+        validateNewMember(memberDto);
 
-		// Update
-		meetup.getMembers().add(member);
-		meetupRepository.save(meetup);
+        MeetupMember member = memberConverter.toDomain(memberDto);
+        Meetup meetup = meetupRepository.findOne(idMeetup);
 
-		return memberConverter.toDTO(member);
-	}
+        // Update
+        meetup.getMembers().add(member);
+        meetupRepository.save(meetup);
 
-	private void validateNewMember(MeetupMemberDto member) {
-		String name = member.getName();
-		if (name == null || name.isEmpty()) {
-			throw new IllegalArgumentException("Nom vide : " + name);
-		}
+        return memberConverter.toDTO(member);
+    }
 
-		String status = member.getStatus();
-		if (status == null || MeetupMemberStatus.findByCode(status) == null) {
-			throw new IllegalArgumentException("Status non reconnus : " + status);
-		}
-	}
+    private void validateNewMember(MeetupMemberDto member) {
+        String name = member.getName();
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Nom vide : " + name);
+        }
+
+        String status = member.getStatus();
+        if (status == null || MeetupMemberStatus.findByCode(status) == null) {
+            throw new IllegalArgumentException("Status non reconnus : " + status);
+        }
+    }
 
 }
