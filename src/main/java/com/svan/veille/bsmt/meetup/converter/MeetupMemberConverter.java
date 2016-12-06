@@ -12,30 +12,30 @@ import com.svan.veille.bsmt.meetup.dto.MeetupMemberDto;
 @Component
 public class MeetupMemberConverter {
 
-	public MeetupMember toDomain(MeetupMemberDto src) {
-		MeetupMember dest = new MeetupMember();
+    public MeetupMember toDomain(MeetupMemberDto src) {
+        MeetupMember dest = new MeetupMember();
 
-		dest.setName(src.getName());
-		dest.setStatus(MeetupMemberStatus.findByCode(src.getStatus()));
+        dest.setName(src.getName());
+        dest.setStatus(MeetupMemberStatus.findByCode(src.getStatus()));
 
-		return dest;
-	}
+        return dest;
+    }
 
-	public MeetupMemberDto toDTO(MeetupMember src) {
-		MeetupMemberDto dest = new MeetupMemberDto();
+    public MeetupMemberDto toDTO(MeetupMember src) {
+        MeetupMemberDto dest = new MeetupMemberDto();
 
-		dest.setName(src.getName());
-		dest.setStatus(src.getStatus().getCode());
+        dest.setName(src.getName());
+        dest.setStatus(src.getStatus().getCode());
 
-		return dest;
-	}
+        return dest;
+    }
 
-	public List<MeetupMemberDto> toDTO(List<MeetupMember> src) {
-		return src != null ? src.stream().map(r -> toDTO(r)).collect(Collectors.toList()) : null;
-	}
+    public List<MeetupMemberDto> toDTO(List<MeetupMember> src) {
+        return src != null ? src.stream().map(r -> toDTO(r)).collect(Collectors.toList()) : null;
+    }
 
-	public List<MeetupMember> toDomain(List<MeetupMemberDto> src) {
-		return src != null ? src.stream().map(r -> toDomain(r)).collect(Collectors.toList()) : null;
-	}
+    public List<MeetupMember> toDomain(List<MeetupMemberDto> src) {
+        return src != null ? src.stream().map(r -> toDomain(r)).collect(Collectors.toList()) : null;
+    }
 
 }

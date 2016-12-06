@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MainController {
 
-	@RequestMapping(value = "/meetup/**")
-	public String home() {
-		return "forward:/index.html";
-	}
+    @RequestMapping(value = "/meetup/**")
+    public String home() {
+        return "forward:/index.html";
+    }
 }
