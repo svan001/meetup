@@ -9,6 +9,8 @@ public class MeetupDto {
 
     private String title;
 
+    private String description;
+
     private ZonedDateTime date;
 
     private List<MeetupMemberDto> members;
@@ -54,4 +56,11 @@ public class MeetupDto {
         this.members = members;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

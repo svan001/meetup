@@ -13,6 +13,8 @@ public class Meetup {
 
     private String title;
 
+    private String description;
+
     private LocalDateTime date;
 
     private List<MeetupMember> members = new ArrayList<MeetupMember>();
@@ -57,4 +59,11 @@ public class Meetup {
         this.date = date;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

@@ -1,17 +1,29 @@
 <form class="form">
-    <div class="form-group">
-        <label for="meetupTitleInput">Titre : </label>
-        <input
-                id="meetupTitleInput"
-                type="text"
-                class="form-control"
-                ng-model="$ctrl.meetupForm.title"
-                placeholder="Nom de la rencontre"/>
-    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+                <label for="meetupTitleInput">Titre : </label>
+                <input
+                        id="meetupTitleInput"
+                        type="text"
+                        class="form-control"
+                        ng-model="$ctrl.meetupForm.title"
+                        placeholder="Nom de la rencontre"/>
+            </div>
+            <div class="form-group">
+                <label for="meetupDescritionInput">Description : </label>
+                <textarea
+                        id="meetupDescritionInput"
+                        class="form-control"
+                        rows="5" maxlength="1000"
+                        ng-model="$ctrl.meetupForm.description"
+                        placeholder="Description de la rencontre">
+                </textarea>
+            </div>
+        </div>
 
-    <div class="form-group">
-        <div class="row">
-            <div class="col-lg-6 col-md-6">
+        <div class="col-lg-6 col-md-6">
+            <div class="form-group">
                 <label for="meetupDateInput">Date : </label>
                 <div uib-datepicker id="meetupDateInput"
                      class="well well-sm"
@@ -20,7 +32,7 @@
                 >
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6">
+            <div class="form-group">
                 <label for="meetupTimeInput">Heure : </label>
                 <div uib-timepicker id="meetupTimeInput"
                      minute-step="15" show-meridian="false"

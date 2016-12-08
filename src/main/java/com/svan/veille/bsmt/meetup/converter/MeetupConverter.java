@@ -24,6 +24,7 @@ public class MeetupConverter {
                 : null;
 
         Meetup dest = new Meetup(src.getTitle(), date);
+        dest.setDescription(src.getDescription());
         dest.setMembers(meetupMemberConverter.toDomain(src.getMembers()));
 
         return dest;
@@ -36,6 +37,7 @@ public class MeetupConverter {
                 : null;
 
         MeetupDto dto = new MeetupDto(src.getId(), src.getTitle(), date);
+        dto.setDescription(src.getDescription());
         dto.setMembers(meetupMemberConverter.toDTO(src.getMembers()));
 
         return dto;
