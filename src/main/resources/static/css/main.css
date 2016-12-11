@@ -1,12 +1,7 @@
 body {
-    color: #5e5e5e;
     padding-top: 2px;
     padding-bottom: 50px;
     font-family: 'Open Sans', 'Droid Sans', arial, sans-serif;
-}
-
-h1 {
-    color: red;
 }
 
 /* Couleur des pseudos reprise du fofo*/
