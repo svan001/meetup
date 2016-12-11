@@ -1,91 +1,87 @@
-<div class="container">
-
-    <h1><a href="meetup" class="btn btn-link">
+<h1><a href="meetup" class="btn btn-link">
         <span class="retourButton glyphicon glyphicon glyphicon-circle-arrow-left"
               aria-hidden="true"></span></a>
-        Rencontre {{meetup.title}}
-    </h1>
+    Rencontre {{meetup.title}}
+</h1>
 
-    <!-- Display infos -->
-    <div class="row">
-        <div class="col-lg-12 col-md-12">
-            <div class="form-group">
-                <label for="meetupDescritionInput">Description : </label>
-                <textarea
-                        id="meetupDescritionInput"
-                        class="form-control"
-                        rows="5" readonly
-                        ng-model="meetup.description"
-                        placeholder="Pas de description">
+<!-- Display infos -->
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="form-group">
+            <label for="meetupDescritionInput">Description : </label>
+            <textarea
+                    id="meetupDescritionInput"
+                    class="form-control"
+                    rows="5" readonly
+                    ng-model="meetup.description"
+                    placeholder="Pas de description">
                 </textarea>
 
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group">
+        <div class="col-lg-6 col-md-6">
+            <label for="meetupDateInput">Date : </label>
+            <div uib-datepicker id="meetupDateInput"
+                 class="well well-sm"
+                 ng-model="meetup.date"
+                 datepicker-options="datePickerOptions"
+                 ng-disabled="true"
+            >
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <label for="meetupTimeInput">Heure : </label>
+            <div uib-timepicker id="meetupTimeInput"
+                 minute-step="15" show-meridian="false"
+                 ng-model="meetup.date"
+                 ng-disabled="true"
+            >
             </div>
         </div>
     </div>
+</div>
+<!-- / Display infos -->
 
-    <div class="row">
-        <div class="form-group">
-            <div class="col-lg-6 col-md-6">
-                <label for="meetupDateInput">Date : </label>
-                <div uib-datepicker id="meetupDateInput"
-                     class="well well-sm"
-                     ng-model="meetup.date"
-                     datepicker-options="datePickerOptions"
-                     ng-disabled="true"
-                >
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6">
-                <label for="meetupTimeInput">Heure : </label>
-                <div uib-timepicker id="meetupTimeInput"
-                     minute-step="15" show-meridian="false"
-                     ng-model="meetup.date"
-                     ng-disabled="true"
-                >
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- / Display infos -->
+<!-- Participation -->
+<div class="row">
+    <add-member ng-if="isMeetupOpen"
+                meetup="meetup" on-success="refreshMeetup()">
+    </add-member>
+    <p ng-if="!isMeetupOpen" class="text-center">
+        Rencontre fermée
+    </p>
+</div>
+<!-- / Participation -->
 
-    <!-- Participation -->
-    <div class="row">
-        <add-member ng-if="isMeetupOpen"
-                    meetup="meetup" on-success="refreshMeetup()">
-        </add-member>
-        <p ng-if="!isMeetupOpen" class="text-center">
-            Rencontre fermée
-        </p>
-    </div>
-    <!-- / Participation -->
-
-    <!-- Recap -->
-    <h3>Participants : {{meetupStats.going}} présent(s),
-        {{meetupStats.notGoing}} absent(s) et {{meetupStats.maybe}} indéci(s)</h3>
-    <table class="table">
-        <thead>
-        <th>Nom</th>
-        </thead>
-        <tbody>
-        <tr ng-repeat="member in meetup.members | orderBy:['status', 'name']"
-            ng-class="{
+<!-- Recap -->
+<h3>Participants : {{meetupStats.going}} présent(s),
+    {{meetupStats.notGoing}} absent(s) et {{meetupStats.maybe}} indéci(s)</h3>
+<table class="table">
+    <thead>
+    <th>Nom</th>
+    </thead>
+    <tbody>
+    <tr ng-repeat="member in meetup.members | orderBy:['status', 'name']"
+        ng-class="{
 				'success' : member.status == 'GOING',
 				'danger' : member.status == 'NOT_GOING',
 				'warning' : member.status == 'MAYBE'
 			}"
-        >
-            <td><span class="glyphicon"
-                      ng-class="{
+    >
+        <td><span class="glyphicon"
+                  ng-class="{
 					'glyphicon-ok' : member.status == 'GOING',
 					'glyphicon-remove' : member.status == 'NOT_GOING',
 					'glyphicon-question-sign' : member.status == 'MAYBE',
 					}"
-                      aria-hidden="true"></span>
-                {{member.name}}
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <!-- / Recap -->
-
-</div>
+                  aria-hidden="true"></span>
+            {{member.name}}
+        </td>
+    </tr>
+    </tbody>
+</table>
+<!-- / Recap -->
