@@ -11,6 +11,10 @@ body {
     background-image: none;
 }
 
+.retourButton {
+    font-size: 30px;
+}
+
 /* Couleur des pseudos reprise du fofo*/
 .teamLeader {
     color: #1109F0;
