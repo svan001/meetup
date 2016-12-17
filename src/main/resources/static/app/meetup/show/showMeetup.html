@@ -1,8 +1,8 @@
-<h1><a href="meetup" class="btn btn-link">
+<h2><a href="meetup" class="btn btn-link">
         <span class="retourButton glyphicon glyphicon glyphicon-circle-arrow-left"
               aria-hidden="true"></span></a>
     Rencontre {{meetup.title}}
-</h1>
+</h2>
 
 <!-- Display infos -->
 <div class="row">
@@ -48,19 +48,21 @@
 
 <!-- Participation -->
 <div class="row">
-    <add-member ng-if="isMeetupOpen"
-                meetup="meetup" on-success="refreshMeetup()">
-    </add-member>
-    <p ng-if="!isMeetupOpen" class="text-center">
-        Rencontre fermée
-    </p>
+    <div class="col-md-12">
+        <add-member ng-if="isMeetupOpen"
+                    meetup="meetup" on-success="refreshMeetup()">
+        </add-member>
+        <p ng-if="!isMeetupOpen" class="text-center">
+            Rencontre fermée
+        </p>
+    </div>
 </div>
 <!-- / Participation -->
 
 <!-- Recap -->
 <h3>Participants : {{meetupStats.going}} présent(s),
     {{meetupStats.notGoing}} absent(s) et {{meetupStats.maybe}} indéci(s)</h3>
-<table class="table">
+<table class="table table-participation">
     <thead>
     <th>Présent</th>
     <th>Nom</th>
