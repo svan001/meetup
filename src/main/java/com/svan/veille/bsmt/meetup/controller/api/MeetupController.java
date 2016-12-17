@@ -44,4 +44,12 @@ public class MeetupController {
         return MeetupService.addMember(idMeetup, memberDto);
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/{id}/member/{memberName}", method = RequestMethod.DELETE)
+    public void removeMember(@PathVariable("id") String idMeetup,
+                             @PathVariable("memberName") String memberName) {
+        MeetupService.removeMember(idMeetup, memberName);
+        return;
+    }
+
 }

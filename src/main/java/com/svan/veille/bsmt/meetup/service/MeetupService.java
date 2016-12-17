@@ -1,13 +1,5 @@
 package com.svan.veille.bsmt.meetup.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-
 import com.svan.veille.bsmt.meetup.converter.MeetupConverter;
 import com.svan.veille.bsmt.meetup.converter.MeetupMemberConverter;
 import com.svan.veille.bsmt.meetup.domain.Meetup;
@@ -16,6 +8,13 @@ import com.svan.veille.bsmt.meetup.domain.enums.MeetupMemberStatus;
 import com.svan.veille.bsmt.meetup.dto.MeetupDto;
 import com.svan.veille.bsmt.meetup.dto.MeetupMemberDto;
 import com.svan.veille.bsmt.meetup.repository.MeetupRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class MeetupService {
@@ -88,4 +87,17 @@ public class MeetupService {
         }
     }
 
+    public void removeMember(String idMeetup, String memberName) {
+        Meetup meetup = meetupRepository.findOne(idMeetup);
+        if (meetup == null) {
+            throw new IllegalStateException("Meetup inconnus");
+        }
+
+        meetup.getMembers().removeIf(
+                member -> member.getName().equals(memberName)
+        );
+        meetupRepository.save(meetup);
+
+        return;
+    }
 }

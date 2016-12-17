@@ -62,7 +62,9 @@
     {{meetupStats.notGoing}} absent(s) et {{meetupStats.maybe}} indéci(s)</h3>
 <table class="table">
     <thead>
+    <th>Présent</th>
     <th>Nom</th>
+    <th ng-if="isMeetupOpen">Editer</th>
     </thead>
     <tbody>
     <tr ng-repeat="member in meetup.members | orderBy:['status', 'name']"
@@ -79,7 +81,14 @@
 					'glyphicon-question-sign' : member.status == 'MAYBE',
 					}"
                   aria-hidden="true"></span>
-            {{member.name}}
+        </td>
+        <td>{{member.name}}</td>
+        <td ng-if="isMeetupOpen">
+            <button type="button" class="btn btn-default"
+                    ng-click="removeMember(member)">
+                <span class="glyphicon glyphicon-remove"
+                      aria-hidden="true"></span>
+            </button>
         </td>
     </tr>
     </tbody>
