@@ -40,7 +40,7 @@
 	};
 
 	module.component('addMember', {
-		templateUrl : '/app/meetup/member/addMember.html',
+		templateUrl : '/app/meetup/component/member/addMember.html',
 		controller : componentController,
 		bindings : {
 			// Meetup a maj avec le nouveau partipant
