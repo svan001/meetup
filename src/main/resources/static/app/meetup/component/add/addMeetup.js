@@ -1,5 +1,4 @@
 (function () {
-
     "use strict";
 
     var module = angular.module('meetup');
@@ -33,7 +32,7 @@
     };
 
     module.component('addMeetup', {
-        templateUrl: '/app/meetup/add/addMeetup.html',
+        templateUrl: '/app/meetup/component/add/addMeetup.html',
         controller: controller,
         bindings: {
             onSuccess: "&"
