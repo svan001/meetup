@@ -1,53 +1,54 @@
-(function() {
-	"use strict";
+(function () {
+    "use strict";
 
-	var module = angular.module('meetup');
+    var module = angular.module('meetup');
 
-	var componentController = function($log, Meetup) {
-		var ctrl = this;
+    var componentController = function ($log, Meetup) {
+        var ctrl = this;
 
-		function resetForm() {
-			ctrl.memberForm = {};
-		}
+        function resetForm() {
+            ctrl.memberForm = {};
+        }
 
-		ctrl.isMemberFormValid = function() {
-			return ctrl.memberForm.name;
-		}
+        ctrl.isMemberFormValid = function () {
+            return ctrl.memberForm.name ?
+                true : false;
+        }
 
-		// Add the member to the meeting
-		ctrl.addMember = function(status) {
-			var data = {
-				name : ctrl.memberForm.name,
-				status : status
-			};
+        // Add the member to the meeting
+        ctrl.addMember = function (status) {
+            var data = {
+                name: ctrl.memberForm.name,
+                status: status
+            };
 
-			Meetup.addMember({
-				id : ctrl.meetup.id
-			}, data,
-			// Maj du scope
-			function() {
-				resetForm();
-				ctrl.onSuccess();
-			}, function(error) {
-				$log.error("Error creation user : " + error)
-			});
-		};
+            Meetup.addMember({
+                    id: ctrl.meetup.id
+                }, data,
+                // Maj du scope
+                function () {
+                    resetForm();
+                    ctrl.onSuccess();
+                }, function (error) {
+                    $log.error("Error creation user : " + error)
+                });
+        };
 
-		ctrl.$onInit = function() {
-			resetForm();
-		}
+        ctrl.$onInit = function () {
+            resetForm();
+        }
 
-	};
+    };
 
-	module.component('addMember', {
-		templateUrl : '/app/meetup/component/member/addMember.html',
-		controller : componentController,
-		bindings : {
-			// Meetup a maj avec le nouveau partipant
-			meetup : '<',
-			// Callback success d'ajout de partipant
-			onSuccess : "&"
-		}
-	});
+    module.component('addMember', {
+        templateUrl: '/app/meetup/component/member/addMember.html',
+        controller: componentController,
+        bindings: {
+            // Meetup a maj avec le nouveau partipant
+            meetup: '<',
+            // Callback success d'ajout de partipant
+            onSuccess: "&"
+        }
+    });
 
 })();
