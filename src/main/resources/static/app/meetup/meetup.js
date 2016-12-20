@@ -8,7 +8,7 @@
         var resourceUrl = baseUrl + '/:id';
         var memberFragmentUrl = "/member";
 
-        var resource = $resource(resourceUrl,
+        var service = $resource(resourceUrl,
             {
                 id: '@id'
             },
@@ -19,12 +19,12 @@
                 }
             });
 
-        resource.removeMember = function (meetup, member) {
+        service.removeMember = function (meetup, member) {
             var url = baseUrl + "/" + meetup.id + memberFragmentUrl + "/" + member.name;
             return $http.delete(url);
         }
 
-        resource.generateMeetupStats = function (meetup) {
+        service.generateMeetupStats = function (meetup) {
             return meetup.members
                 .reduce(function (value, member) {
                     member.status == 'GOING' && value.going++;
@@ -39,11 +39,11 @@
                 });
         };
 
-        resource.isOpen = function (meetup) {
+        service.isOpen = function (meetup) {
             return new Date(meetup.date) > Date.now();
         };
 
-        return resource;
+        return service;
     });
 
 })();
