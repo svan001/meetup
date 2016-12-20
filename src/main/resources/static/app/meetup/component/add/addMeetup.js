@@ -3,7 +3,7 @@
 
     var module = angular.module('meetup');
 
-    var controller = function (Meetup) {
+    var controller = function () {
         var ctrl = this;
 
         function resetForm() {
@@ -21,29 +21,23 @@
         };
 
         ctrl.addMeetup = function () {
-            var meetup = new Meetup(ctrl.meetupForm);
-
-            meetup.$save().then(function () {
-                resetForm();
-                ctrl.onSuccess({
-                    "meetup": meetup
-                });
-            }, function (error) {
-                $log.error("création de meetup en erreur " + error)
+            ctrl.onAdd({
+                "meetup": ctrl.meetupForm
             });
+
+            resetForm();
         }
 
         ctrl.$onInit = function () {
             resetForm();
         }
-
     };
 
     module.component('addMeetup', {
         templateUrl: '/app/meetup/component/add/addMeetup.html',
         controller: controller,
         bindings: {
-            onSuccess: "&"
+            onAdd: "&"
         }
     });
 

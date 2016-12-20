@@ -1,25 +1,33 @@
-(function() {
-	"use strict";
+(function () {
+    "use strict";
 
-	var module = angular.module("meetup");
+    var module = angular.module("meetup");
 
-	module.controller('listMeetupCtrl', function($scope, $location, $log, Meetup) {
-		$scope.isMeetupOpen = Meetup.isOpen;
+    module.controller('listMeetupCtrl', function ($scope, $location, $log, Meetup) {
+        $scope.isMeetupOpen = Meetup.isOpen;
 
-		var init = function() {
-			$scope.refreshMeetupList();
-		}
+        var init = function () {
+            refreshMeetupList();
+        };
 
-		$scope.refreshMeetupList = function() {
-			$scope.meetups = Meetup.query();
-		};
+        function refreshMeetupList() {
+            $scope.meetups = Meetup.query();
+        };
 
-		$scope.selectMeetup = function(meetup) {
-			$location.path("/meetup/" + meetup.id);
-		}
+        $scope.addMeetup = function (meetup) {
+            Meetup.save(meetup).$promise.then(
+                refreshMeetupList
+                , function (error) {
+                    $log.error("création de meetup en erreur " + error)
+                });
+        };
 
-		init();
+        $scope.selectMeetup = function (meetup) {
+            $location.path("/meetup/" + meetup.id);
+        };
 
-	});
+        init();
+
+    });
 
 })();
