@@ -17,21 +17,13 @@
 
         // Add the member to the meeting
         ctrl.addMember = function (status) {
-            var data = {
-                name: ctrl.memberForm.name,
-                status: status
-            };
-
-            Meetup.addMember({
-                    id: ctrl.meetup.id
-                }, data,
-                // Maj du scope
-                function () {
-                    resetForm();
-                    ctrl.onSuccess();
-                }, function (error) {
-                    $log.error("Error creation user : " + error)
-                });
+            ctrl.onAdd({
+                member: {
+                    name: ctrl.memberForm.name,
+                    status: status
+                }
+            });
+            resetForm();
         };
 
         ctrl.$onInit = function () {
@@ -44,10 +36,8 @@
         templateUrl: '/app/meetup/component/member/addMember.html',
         controller: componentController,
         bindings: {
-            // Meetup a maj avec le nouveau partipant
-            meetup: '<',
-            // Callback success d'ajout de partipant
-            onSuccess: "&"
+            // Ajout de partipant
+            onAdd: "&"
         }
     });
 

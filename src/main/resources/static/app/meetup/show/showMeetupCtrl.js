@@ -23,8 +23,17 @@
                 $scope.isMeetupOpen = Meetup.isOpen(meetup);
             })
         };
-        //TODO a retirer une fois une meilleu gestion par composant et le retrait du component de participation
-        $scope.refreshMeetup = refreshMeetup;
+
+        $scope.addMember = function (member) {
+            Meetup.addMember({
+                    id: meetupId
+                }, member,
+                refreshMeetup,
+                function (error) {
+                    $log.error("Error creation user : " + error)
+                });
+
+        }
 
         $scope.removeMember = function (member) {
             Meetup.removeMember($scope.meetup, member)

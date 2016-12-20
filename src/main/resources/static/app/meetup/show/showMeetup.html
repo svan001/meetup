@@ -50,7 +50,7 @@
 <div class="row">
     <div class="col-md-12">
         <add-member ng-if="isMeetupOpen"
-                    meetup="meetup" on-success="refreshMeetup()">
+                    on-add="addMember(member)">
         </add-member>
         <p ng-if="!isMeetupOpen" class="text-center">
             Rencontre fermée
