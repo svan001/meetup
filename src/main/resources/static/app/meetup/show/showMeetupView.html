@@ -59,40 +59,8 @@
 </div>
 <!-- / Participation -->
 
-<!-- Recap -->
 <h3>Participants : {{meetupStats.going}} présent(s),
     {{meetupStats.notGoing}} absent(s) et {{meetupStats.maybe}} indéci(s)</h3>
-<table class="table table-participation">
-    <thead>
-    <th>Présent</th>
-    <th>Nom</th>
-    <th ng-if="isMeetupOpen">Editer</th>
-    </thead>
-    <tbody>
-    <tr ng-repeat="member in meetup.members | orderBy:['status', 'name']"
-        ng-class="{
-				'success' : member.status == 'GOING',
-				'danger' : member.status == 'NOT_GOING',
-				'warning' : member.status == 'MAYBE'
-			}"
-    >
-        <td><span class="glyphicon"
-                  ng-class="{
-					'glyphicon-ok' : member.status == 'GOING',
-					'glyphicon-remove' : member.status == 'NOT_GOING',
-					'glyphicon-question-sign' : member.status == 'MAYBE',
-					}"
-                  aria-hidden="true"></span>
-        </td>
-        <td>{{member.name}}</td>
-        <td ng-if="isMeetupOpen">
-            <button type="button" class="btn btn-default"
-                    ng-click="removeMember(member)">
-                <span class="glyphicon glyphicon-remove"
-                      aria-hidden="true"></span>
-            </button>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<!-- / Recap -->
+<member-tab meetup="meetup" edit="isMeetupOpen"
+                 on-remove-member="removeMember(member)">
+</member-tab>

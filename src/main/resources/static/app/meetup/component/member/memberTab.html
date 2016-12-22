@@ -1,0 +1,35 @@
+<!-- Member tab -->
+<table class="table table-participation">
+    <thead>
+    <th>Présent</th>
+    <th>Nom</th>
+    <th ng-if="$ctrl.edit">Editer</th>
+    </thead>
+    <tbody>
+    <tr ng-repeat="member in $ctrl.meetup.members | orderBy:['status', 'name']"
+        ng-class="{
+				'success' : member.status == 'GOING',
+				'danger' : member.status == 'NOT_GOING',
+				'warning' : member.status == 'MAYBE'
+			}"
+    >
+        <td><span class="glyphicon"
+                  ng-class="{
+					'glyphicon-ok' : member.status == 'GOING',
+					'glyphicon-remove' : member.status == 'NOT_GOING',
+					'glyphicon-question-sign' : member.status == 'MAYBE',
+					}"
+                  aria-hidden="true"></span>
+        </td>
+        <td>{{member.name}}</td>
+        <td ng-if="$ctrl.edit">
+            <button type="button" class="btn btn-default"
+                    ng-click="$ctrl.onRemoveMember({'member' : member})">
+                <span class="glyphicon glyphicon-remove"
+                      aria-hidden="true"></span>
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<!-- / Member tab -->
