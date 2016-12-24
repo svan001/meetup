@@ -13,7 +13,7 @@
         ctrl.isMemberFormValid = function () {
             return ctrl.memberForm.name ?
                 true : false;
-        }
+        };
 
         // Add the member to the meeting
         ctrl.addMember = function (status) {
@@ -28,7 +28,7 @@
 
         ctrl.$onInit = function () {
             resetForm();
-        }
+        };
 
     };
 

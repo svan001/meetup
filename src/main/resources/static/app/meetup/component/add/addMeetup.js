@@ -26,11 +26,11 @@
             });
 
             resetForm();
-        }
+        };
 
         ctrl.$onInit = function () {
             resetForm();
-        }
+        };
     };
 
     module.component('addMeetup', {
