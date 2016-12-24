@@ -22,7 +22,7 @@
                 $scope.meetupStats = Meetup.generateMeetupStats(meetup);
                 $scope.isMeetupOpen = Meetup.isOpen(meetup);
             })
-        };
+        }
 
         $scope.addMember = function (member) {
             Meetup.addMember({
@@ -32,8 +32,7 @@
                 function (error) {
                     $log.error("Error creation user : " + error)
                 });
-
-        }
+        };
 
         $scope.removeMember = function (member) {
             Meetup.removeMember($scope.meetup, member)
