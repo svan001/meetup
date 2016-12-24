@@ -9,20 +9,33 @@
         // App
         'meetup']);
 
+    // Config URL + route
+    var meetupBaseUrl = '/meetup';
+
     app.config(function ($routeProvider, $locationProvider) {
 
-        $routeProvider.when('/meetup', {
+        $routeProvider.when(meetupBaseUrl, {
             templateUrl: "app/meetup/list/listMeetupView.html",
             controller: "listMeetupCtrl"
-        }).when('/meetup/:id', {
+        }).when(meetupBaseUrl + '/:id', {
             templateUrl: "app/meetup/show/showMeetupView.html",
             controller: "showMeetupCtrl"
         }).otherwise({
-            redirectTo: '/meetup'
+            redirectTo: meetupBaseUrl
         });
 
         $locationProvider.html5Mode(true);
 
+    });
+
+    app.factory('AppLocation', function ($location) {
+        var service = {};
+
+        service.goToMeetup = function(meetup){
+            $location.path(meetupBaseUrl + '/' + meetup.id);
+        }
+
+        return service;
     });
 
 })();

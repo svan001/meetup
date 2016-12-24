@@ -3,7 +3,7 @@
 
     var module = angular.module("meetup");
 
-    module.controller('listMeetupCtrl', function ($scope, $location, $log, Meetup) {
+    module.controller('listMeetupCtrl', function ($scope, $log, Meetup, AppLocation) {
         $scope.isMeetupOpen = Meetup.isOpen;
 
         var init = function () {
@@ -16,14 +16,14 @@
 
         $scope.addMeetup = function (meetup) {
             Meetup.save(meetup).$promise.then(
-                refreshMeetupList
+                AppLocation.goToMeetup
                 , function (error) {
                     $log.error("création de meetup en erreur " + error)
                 });
         };
 
         $scope.selectMeetup = function (meetup) {
-            $location.path("/meetup/" + meetup.id);
+            AppLocation.goToMeetup(meetup);
         };
 
         init();
