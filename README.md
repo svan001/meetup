@@ -14,6 +14,7 @@
 * Install : `sudo apt-get install mongodb`
 * **/!\ Limiter la taille du journal : **
     * Editer `/etc/mongodb.conf` pour ajouter `smallfiles=true`
+    * Via CL : `echo smallfiles=true >> /etc/mongodb.conf`
 * Démmarrage : ``
 
 ### Créer la base 
